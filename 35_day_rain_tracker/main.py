@@ -7,6 +7,14 @@ URL=f"https://api.openweathermap.org/data/2.5/forecast?lat={LAT}&lon={LON}&appid
 output = requests.get(URL)
 print(output.status_code)
 weather_data = output.json()
-weather_condition_id = weather_data["list"][0]["weather"][0]["id"]
-if weather_condition_id < 700:
-    print("bring an umbrella!")
+# weather_condition_id = weather_data["list"][0]["weather"][0]["id"]
+# if weather_condition_id < 700:
+#     print("bring an umbrella!")
+
+will_rain = False
+for hour_data in weather_data["list"]:
+    condition_code = hour_data["weather"][0]["id"]
+    if int(condition_code) < 700:
+        will_rain = True
+if will_rain:
+    print("Bring an umbrella!")
