@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import os
 import requests
+from requests.auth import HTTPBasicAuth
 load_dotenv()
 
 sheety_api_key = os.getenv("SHEETY_AUTH_HEADER")
@@ -14,10 +15,12 @@ request_body = {
 class DataManager:
     #This class is responsible for talking to the Google Sheet.
     def __init__(self,city,iata,lowestPrice):
-        self.city = city
-        self.age = iata
-        self.lowestPrice = lowestPrice  
-
+        self._user = os.getenv("AMADEUS_USERNAME")
+        self.password = os.getenv("AMADEUS_PASSWORD")
+        self._authorization = HTTPBasicAuth(self._user, self._password)
+        self.destination_data = {}  
+    def get_destination_data(self):
+        response = req
 def getSheetInfo():
     """This function retrieves the info of Google Sheet"""
     
