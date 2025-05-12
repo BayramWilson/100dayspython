@@ -8,7 +8,7 @@ USERNAME = os.getenv("PIXELA_USERNAME")
 TOKEN = os.getenv("PIXELA_TOKEN")
 
 current_date = datetime.datetime.now()
-print(current_date)
+# print(current_date)
 
 pixela_url = "https://pixe.la"
 pixela_endpoint = "https://pixe.la/v1/users"
@@ -42,11 +42,20 @@ cre_px_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs/{create_graph["id"]}"
 
 create_pixel = {
     "date": current_date.strftime("%Y%m%d"),
-    "quantity": "2",
+    "quantity": "12",
 }
 
-create_pixel = requests.post(url= cre_px_endpoint, json=create_pixel, headers=headers )
+# create_pixel_ep = requests.post(url= cre_px_endpoint, json=create_pixel, headers=headers )
 
 get_user_link = f"{pixela_url}/@{USERNAME}"
 print(get_user_link)
-print(create_pixel.text)
+# print(create_pixel.text)
+
+update_pixel_ep = f"{pixela_endpoint}/{USERNAME}/graphs/{create_graph["id"]}/{current_date.strftime("%Y%m08")}" 
+print(update_pixel_ep)
+update_pixel_body = {
+    "quantity": "15",
+}
+
+update_pixel = requests.put(url= update_pixel_ep, json=update_pixel_body, headers=headers)
+print(update_pixel.text)
