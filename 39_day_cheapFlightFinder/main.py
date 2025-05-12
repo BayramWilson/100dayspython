@@ -5,5 +5,8 @@ from pprint import pprint
 
 sheet_data = getSheetInfo()
 # print(sheet_data)
-
-print(mutSheetInfo(2))
+for i in range(2, 11):
+    print(i)
+    mutSheetInfo(i)
+    if i == 10:
+        break

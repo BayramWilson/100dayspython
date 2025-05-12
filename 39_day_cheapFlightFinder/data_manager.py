@@ -31,7 +31,7 @@ def mutSheetInfo(objID):
      
      put_body = {
          "price": {
-             "IATA Code": "TEST"
+             "iataCode": "TESTING" #this need title() format
          }
      }
      mut_rows_ep = f"https://api.sheety.co/ffc8b9a99ae35d142dc788b0c5a5e26e/flightDeals/prices/{objID}"
