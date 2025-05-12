@@ -57,5 +57,10 @@ update_pixel_body = {
     "quantity": "15",
 }
 
-update_pixel = requests.put(url= update_pixel_ep, json=update_pixel_body, headers=headers)
-print(update_pixel.text)
+# update_pixel = requests.put(url= update_pixel_ep, json=update_pixel_body, headers=headers)
+# print(update_pixel.text)
+
+delete_pixel_ep = update_pixel_ep
+
+delete_pixel = requests.delete(url=delete_pixel_ep, headers=headers)
+print(delete_pixel.text)
