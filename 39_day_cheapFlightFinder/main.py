@@ -1,17 +1,24 @@
-#This file will need to use the DataManager,FlightSearch, FlightData, NotificationManager classes to achieve the program requirements.
+import time
 from data_manager import DataManager
-from data_manager import *
-from pprint import pprint
+from flight_search import FlightSearch
 
-from flight_search import *
+# ==================== Set up the Flight Search ====================
 
-sheet_data = getSheetInfo()
-# print(sheet_data)7
+data_manager = DataManager()
+sheet_data = data_manager.get_destination_data()
+# print(sheet_data)
+flight_search = FlightSearch()
 
-print(FlightSearch._get_new_token())
+# ==================== Update the Airport Codes in Google Sheet ====================
 
-# for i in range(2, 11):
-#     print(i)
-#     mutSheetInfo(i)
-#     if i == 10:
-#         break
+# Fetch data from Google Sheet
+sheet_data = data_manager.get_destination_data()
+
+# Update IATA codes if needed
+for row in sheet_data:
+    if row["iataCode"] == "TESTING":  # Or check for an empty string
+        row["iataCode"] = flight_search.get_destination_code(row["city"])
+
+# Update the Google Sheet with the new IATA codes
+data_manager.destination_data = sheet_data
+data_manager.update_destination_codes()
