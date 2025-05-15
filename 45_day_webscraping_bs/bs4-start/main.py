@@ -20,11 +20,11 @@ soup = BeautifulSoup(website, "html.parser")
 titleline = soup.find('span', class_='titleline')
 
 # Find the <a> tag within it and get the text
-a_text = titleline.find_all('a').get_text()
+a_text = titleline.find('a').get_text()
 
-a_link = titleline.find_all("a").get("href")
+a_link = titleline.find("a").get("href")
 
-a_upvote = soup.find_all("span", class_="score")
+a_upvote = soup.find("span", class_="score")
 a_upvote = a_upvote.getText()
 # <span class="score" id="score_43982777">40 points</span>
 print(a_text)
