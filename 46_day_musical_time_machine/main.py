@@ -1,5 +1,5 @@
-URL = "https://www.billboard.com"
 user_input = input("Which year do you want to travel to? Type the date in this format YYYY-MM-DD:\n")
+URL = f"https://www.billboard.com/charts/hot-100/{user_input}"
 headers = {
     "CONTENT-TYPE":"",	
     "CONTENT-LENGTH":"",
