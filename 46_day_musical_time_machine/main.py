@@ -1,25 +1,24 @@
-user_input = input("Which year do you want to travel to? Type the date in this format YYYY-MM-DD:\n")
-URL = f"https://www.billboard.com/charts/hot-100/{user_input}"
-headers = {
-    "CONTENT-TYPE":"",	
-    "CONTENT-LENGTH":"",
-    "HOST":"www.whatismybrowser.com",
-    "SEC-CH-UA":'"Chromium";v="136", "Brave";v="136", "Not.A/Brand";v="99"',
-    "SEC-CH-UA-MOBILE":"?0",
-    "SEC-CH-UA-ARCH":"x86",
-    "SEC-CH-UA-PLATFORM":"Windows",
-    "SEC-CH-UA-PLATFORM-VERSION":"19.0.0",
-    "SEC-CH-UA-MODEL":"",
-    "UPGRADE-INSECURE-REQUESTS":1,
-    "USER-AGENT":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36",
-    "ACCEPT":"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8",
-    "SEC-GPC":1,
-    "ACCEPT-LANGUAGE":"de-DE,de;q=0.7",
-    "SEC-FETCH-SITE":"same-origin",
-    "SEC-FETCH-MODE":"navigate",
-    "SEC-FETCH-USER":"?1",
-    "SEC-FETCH-DEST":"document",
-    "REFERER":"https://www.whatismybrowser.com/",
-    "ACCEPT-ENCODING":"gzip, deflate, br, zstd",
-    "PRIORITY":"u=0, i"
-}
+import requests
+from bs4 import BeautifulSoup
+
+# user_input = input("Which year do you want to travel to? Type the date in this format YYYY-MM-DD:\n")
+# URL = f"https://www.billboard.com/charts/hot-100/{user_input}"
+URL = "https://www.billboard.com/charts/hot-100/2000-08-12/"
+headers = {"USER-AGENT":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36"}
+
+response = requests.get(url=URL, headers=headers)
+soup = BeautifulSoup(response.text, "html.parser")
+
+# song_titles = soup.find_all(id="title-of-a-story")
+# print(song_titles)
+# for i in song_titles:
+#     print(i.get_text())
+
+chart_result_list = soup.find_all("li", class_="o-chart-results-list__item")
+
+for item in chart_result_list:
+    title_tag = item.find("h3", id="title-of-a-story")
+    if title_tag:
+        title = title_tag.get_text(strip=True)
+        print(title)
+
