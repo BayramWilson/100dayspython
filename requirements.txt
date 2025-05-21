@@ -1,2 +1,5 @@
 requests
 html
+spotipy
+bs4
+BeautifulSoup
