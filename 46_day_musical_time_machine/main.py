@@ -56,6 +56,15 @@ track_uri = research["tracks"]["items"][0]["uri"]
 
 track_uri_list = []
 
+create_playlist = sp.user_playlist_create(
+    user = user_id,
+    name = user_input + " Top 100",
+    public = False,
+    collaborative=False,
+    description =  "This is my first playlist created with Python and the Spotipy librarie."
+)
+playlist_id = create_playlist["id"]
+
 for i in range(0, 101):
     try:
         q = f"track:\"{titles[i]}\" year:{year}"
@@ -64,17 +73,11 @@ for i in range(0, 101):
         track_uri_list.append(track_uri)
     except IndexError:
         track_uri_list.append(None)
-print(track_uri_list)
 
+track_uri_list = list(filter(lambda x: x is not None, track_uri_list))
 
-# for i in q:
-#     f"track:\"{titles[0]}\" year:{year}"
-print()
-
-
-
-
-
-def create_playlist():
-
-    pass
+add_songs_playlist = sp.user_playlist_add_tracks(
+    user = user_id,
+    playlist_id = playlist_id,
+    tracks = track_uri_list        
+)
