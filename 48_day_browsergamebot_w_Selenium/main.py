@@ -7,9 +7,16 @@ from selenium import webdriver
 # options.add_argument("--no-sandbox")
 # options.add_argument("--disable-dev-shm-usage")
 
-driver = webdriver.Chrome()
+# Keep chromebrowser open
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_experimental_option("detach", True)
+
+
+driver = webdriver.Chrome(options=chrome_options)
 driver.get("https://example.com")
 
-time.sleep(30)
-print(driver.title)
+
+
+
+# driver.close()
 # driver.quit()
