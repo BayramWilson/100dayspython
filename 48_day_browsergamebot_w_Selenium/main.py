@@ -13,7 +13,9 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
 
 
+
 driver = webdriver.Chrome(options=chrome_options)
+driver.fullscreen_window()
 driver.get("https://python.org")
 
 # event_times = []
