@@ -16,11 +16,40 @@ money = driver.find_element(By.CSS_SELECTOR, value="#money")
 prices = driver.find_elements(By.CSS_SELECTOR, value="#store b")
 items = []
 for price in prices:
-    print(price.text)
+    #print(price.text)
     items.append(price.text)
-print(items)
-items = items.strip("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoprstuvwxyz-")
-print(items)
+#print(items)
+
+SYMBOLS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoprstuvwxyz-, ' 
+shaped_items = []
+for item in items:
+    temp = ""
+    for ch in item:
+        if ch not in SYMBOLS:
+            temp += ch
+
+    shaped_items.append(temp)
+#print(shaped_items)
+shaped_items.pop()
+#print(shaped_items)
+int_list = []
+for str in shaped_items:
+    int_list.append(int(str))
+#print(int_list)    
+
+print(int_list[0])
+print(items[0])
+
+
+
+
+
+
+
+    # item.strip("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoprstuvwxyz-")
+    # shaped_items.append(item)
+# items = items.strip("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnoprstuvwxyz-")
+# print(shaped_items)
 # item1 = driver.find_element(By.XPATH, value='//*[@id="buyCursor"]/b/text()[2]')
 # print(item1.text)
 # item2 = driver.find_element(By.XPATH, value='')
@@ -36,3 +65,17 @@ print(items)
 #         "price":""
 # }
 #while True:
+
+# exList = ['JM = {12, 23, 34, 45, 56}', 'the quick brown fox', 'word ($(,))']
+
+
+# results = []
+# for element in exList:
+#     temp = ""
+#     for ch in element:
+#         if ch not in SYMBOLS:
+#             temp += ch
+
+#     results.append(temp)
+
+# print results
