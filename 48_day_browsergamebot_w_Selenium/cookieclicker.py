@@ -67,4 +67,4 @@ while bot_is_on:
             if len(int_list) >= 8:
                 check_gold(money, int_list)
         next_check = time.time() + 5
-print(driver.find_element(By.ID, value="cp").text)
+print(driver.find_element(By.ID, value="cps").text)
