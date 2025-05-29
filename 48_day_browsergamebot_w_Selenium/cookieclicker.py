@@ -50,9 +50,12 @@ def check_gold(gold, int_list):
 cps = driver.find_element(By.ID, value="cps")
 print(cps.text)
 bot_is_on = True
+
+time.sleep(10)
 cookie = driver.find_element(By.ID, value="cookie")
 next_check = time.time() + 5
 timeout = time.time() + 60*5  
+
 while bot_is_on:
     test = 0
     cookie.click()
